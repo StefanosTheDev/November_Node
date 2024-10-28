@@ -3,15 +3,14 @@ const AppError = require('../error/AppError');
 const userValidation = require('./userValidation');
 const mongoose = require('mongoose');
 // TODO: Confirm / Run Unit Tests
-exports.createUser = async ({ name, password, age }) => {
+exports.createUser = async ({ name, password, age, interests }) => {
   userValidation.validateName(name);
   userValidation.validatePassword(password);
 
-  const newUser = await User.create({ name, password, age });
+  const newUser = await User.create({ name, password, age, interests });
   return newUser; // Return the newly created user
 };
 
-// TODO: Get All Users
 exports.getAllUsers = async () => {
   const users = await User.find(); // Query to find all users. // This returns an empty array. if it is empty
   if (users.length === 0) throw new AppError('Users Database is Empty', 400);
@@ -32,6 +31,19 @@ exports.deleteUserById = async (id) => {
   return deleteUser;
 };
 
+exports.updateUserById = async (id, updateData) => {
+  const updatedUser = await User.findByIdAndUpdate(id, updateData, {
+    new: true, // Return the updated document
+    runValidators: true, // Ensure validation for updated fields
+  });
+
+  if (!updatedUser) {
+    throw new Error('User not found'); // Handle user not found case
+  }
+
+  return updatedUser;
+};
+
 exports.getTotalAge = async () => {
   try {
     const result = await User.aggregate([
@@ -49,19 +61,7 @@ exports.getTotalAge = async () => {
   }
 };
 
-exports.updateUserById = async (id, updateData) => {
-  const updatedUser = await User.findByIdAndUpdate(id, updateData, {
-    new: true, // Return the updated document
-    runValidators: true, // Ensure validation for updated fields
-  });
-
-  if (!updatedUser) {
-    throw new Error('User not found'); // Handle user not found case
-  }
-
-  return updatedUser;
-};
-
-// Delete User By ID
-
-// Update by ID
+// Features Of Function
+// Create a modular function that does the following:
+// - User can input 1 category option
+exports.categorizeUserByInterest = async () => {};

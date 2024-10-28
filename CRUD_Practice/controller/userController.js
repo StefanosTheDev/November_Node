@@ -2,8 +2,13 @@ const userService = require('../service/userService');
 exports.createUser = async (req, res, next) => {
   try {
     // Extract data from request body
-    const { name, password, age } = req.body;
-    const newUser = await userService.createUser({ name, password, age });
+    const { name, password, age, interests } = req.body;
+    const newUser = await userService.createUser({
+      name,
+      password,
+      age,
+      interests,
+    });
 
     // Respond with the created user
     res.status(201).json({
