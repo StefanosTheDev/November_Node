@@ -2,6 +2,9 @@ const User = require('../models/userModel');
 const AppError = require('../error/AppError');
 const userValidation = require('./userValidation');
 const mongoose = require('mongoose');
+const fs = require('fs');
+const { search } = require('../routes/userRoutes');
+
 // TODO: Confirm / Run Unit Tests
 exports.createUser = async ({
   name,
@@ -114,3 +117,24 @@ exports.searchDescriptionByKeyWord = async (word) => {
 
   return result;
 };
+
+// Step 1: My desired interest is to get a series of descriptions by each user in an Array format.
+// Step 2: Then I want to search through each instances to see if there are matches.
+// Step 3: If there is a match from the word to an element in the array of strings that we aggregated.
+// Step 4: Return that Object
+const searchUserJson = async () => {
+  fs.readFile(
+    'November_Node/CRUD_Practice/files/users.json',
+    'utf8',
+    (err, data) => {
+      if (err) {
+        console.log('here');
+        console.error(err);
+        return;
+      }
+      console.log(data); // Output the content of the file
+    }
+  );
+};
+
+console.log(searchUserJson());
