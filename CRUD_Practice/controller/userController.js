@@ -2,12 +2,13 @@ const userService = require('../service/userService');
 exports.createUser = async (req, res, next) => {
   try {
     // Extract data from request body
-    const { name, password, age, interests } = req.body;
+    const { name, password, age, interests, description } = req.body;
     const newUser = await userService.createUser({
       name,
       password,
       age,
       interests,
+      description,
     });
 
     // Respond with the created user
@@ -89,6 +90,52 @@ exports.getTotalAge = async (req, res, next) => {
       status: 'success',
       data: {
         total: totalAge,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.categorizeUserByInterest = async (req, res, next) => {
+  try {
+    const getTotalInterests = await userService.categorizeUserByInterest();
+    res.status(200).json({
+      status: 'success',
+      data: {
+        user: getTotalInterests,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.categorizeUserByOldestAge = async (req, res, next) => {
+  // I sort the document by age in Ascending order and then pull the first element.
+  try {
+    const getOldestAge = await userService.categorizeUserByOldestAge();
+    res.status(200).json({
+      status: 'success',
+      data: {
+        user: getOldestAge,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.searchDescription = async (req, res, next) => {
+  try {
+    const { word } = req.body;
+
+    const search = await userService.searchDescriptionByKeyWord(word);
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        results: search,
       },
     });
   } catch (err) {

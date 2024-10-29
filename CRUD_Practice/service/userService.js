@@ -3,11 +3,23 @@ const AppError = require('../error/AppError');
 const userValidation = require('./userValidation');
 const mongoose = require('mongoose');
 // TODO: Confirm / Run Unit Tests
-exports.createUser = async ({ name, password, age, interests }) => {
-  userValidation.validateName(name);
-  userValidation.validatePassword(password);
+exports.createUser = async ({
+  name,
+  password,
+  age,
+  interests,
+  description,
+}) => {
+  userValidation.validateString(name);
+  userValidation.validateString(password);
 
-  const newUser = await User.create({ name, password, age, interests });
+  const newUser = await User.create({
+    name,
+    password,
+    age,
+    interests,
+    description,
+  });
   return newUser; // Return the newly created user
 };
 
@@ -63,5 +75,42 @@ exports.getTotalAge = async () => {
 
 // Features Of Function
 // Create a modular function that does the following:
-// - User can input 1 category option
-exports.categorizeUserByInterest = async () => {};
+// - This will return a total interest count:
+// For example: Tennis: 4 , Coding :9 , //
+exports.categorizeUserByInterest = async () => {
+  const result = await User.aggregate([
+    { $unwind: '$interests' }, // Deconstruct 'interests' array into individual elements
+    {
+      $group: {
+        _id: '$interests', // Group by the 'interests' field
+        totalUsers: { $sum: 1 }, // Count the number of users with each interest
+      },
+    },
+  ]);
+  return result;
+};
+
+exports.categorizeUserByOldestAge = async () => {
+  const data = await User.aggregate([
+    {
+      // By combining $sort with $limit (set to 1), you ensure:
+    },
+  ]);
+};
+
+//____________________________________________________________________________________________________________
+// Step 1: My desired interest is to get a series of descriptions by each user in an Array format.
+// Step 2: Then I want to search through each instances to see if there are matches.
+// Step 3: If there is a match from the word to an element in the array of strings that we aggregated.
+// Step 4: Return that Object.
+exports.searchDescriptionByKeyWord = async (word) => {
+  const result = await User.aggregate([
+    {
+      $match: {
+        description: { $regex: new RegExp(`\\b${word}\\b`, 'i') },
+      },
+    },
+  ]);
+
+  return result;
+};

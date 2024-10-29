@@ -33,6 +33,9 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// Create a text index on the `description` field
+userSchema.index({ description: 'text' });
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
