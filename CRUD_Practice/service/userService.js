@@ -76,10 +76,6 @@ exports.getTotalAge = async () => {
   }
 };
 
-// Features Of Function
-// Create a modular function that does the following:
-// - This will return a total interest count:
-// For example: Tennis: 4 , Coding :9 , //
 exports.categorizeUserByInterest = async () => {
   const result = await User.aggregate([
     { $unwind: '$interests' }, // Deconstruct 'interests' array into individual elements
@@ -118,23 +114,14 @@ exports.searchDescriptionByKeyWord = async (word) => {
   return result;
 };
 
-// Step 1: My desired interest is to get a series of descriptions by each user in an Array format.
-// Step 2: Then I want to search through each instances to see if there are matches.
-// Step 3: If there is a match from the word to an element in the array of strings that we aggregated.
-// Step 4: Return that Object
-const searchUserJson = async () => {
-  fs.readFile(
-    'November_Node/CRUD_Practice/files/users.json',
-    'utf8',
-    (err, data) => {
-      if (err) {
-        console.log('here');
-        console.error(err);
-        return;
-      }
-      console.log(data); // Output the content of the file
-    }
-  );
+exports.findOldestUser = async () => {
+  const getOldestUser = await User.aggregate([
+    {
+      $group: {
+        _id: 'test',
+        oldestAge: { $max: '$age' },
+      },
+    },
+  ]);
+  return getOldestUser;
 };
-
-console.log(searchUserJson());

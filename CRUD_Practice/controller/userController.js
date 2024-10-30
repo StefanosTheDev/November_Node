@@ -142,3 +142,21 @@ exports.searchDescription = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.searchUserJson = async (req, res, next) => {
+  // Read the endpoint
+};
+
+exports.findOldestUser = async (req, res, next) => {
+  try {
+    const getUser = await userService.findOldestUser();
+    res.status(200).json({
+      status: 'success',
+      data: {
+        AGE: getUser,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};

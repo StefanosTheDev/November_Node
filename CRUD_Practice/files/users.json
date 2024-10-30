@@ -1,0 +1,49 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "description": "Full-stack developer with a passion for creating web applications.",
+      "age": 29,
+      "created_at": "2023-01-15T10:25:43Z",
+      "interests": ["JavaScript", "Node.js", "React", "APIs"]
+    },
+    {
+      "id": 2,
+      "name": "Bob Smith",
+      "description": "Data scientist focusing on machine learning and big data.",
+      "age": 34,
+      "created_at": "2023-03-05T13:47:23Z",
+      "interests": [
+        "Python",
+        "Machine Learning",
+        "Data Visualization",
+        "Big Data"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Carol White",
+      "description": "Project manager with experience in agile and lean methodologies.",
+      "age": 42,
+      "created_at": "2022-09-21T09:19:12Z",
+      "interests": ["Agile", "Scrum", "Lean", "Project Management"]
+    },
+    {
+      "id": 4,
+      "name": "David Brown",
+      "description": "Backend developer specializing in database management and server architecture.",
+      "age": 31,
+      "created_at": "2023-02-12T18:14:56Z",
+      "interests": ["SQL", "MongoDB", "Node.js", "APIs"]
+    },
+    {
+      "id": 5,
+      "name": "Eva Green",
+      "description": "UX designer with a focus on user research and interface design.",
+      "age": 27,
+      "created_at": "2023-04-22T15:33:42Z",
+      "interests": ["UX Design", "User Research", "Prototyping", "Wireframing"]
+    }
+  ]
+}
