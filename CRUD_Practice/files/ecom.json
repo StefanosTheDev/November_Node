@@ -1,0 +1,119 @@
+{
+  "store": {
+    "name": "Tech Haven",
+    "location": {
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "USA"
+    },
+    "products": [
+      {
+        "product_id": "P001",
+        "name": "Laptop Pro 15",
+        "category": "Electronics",
+        "price": 1499.99,
+        "inventory": {
+          "stock": 25,
+          "supplier": {
+            "name": "Global Tech Supply",
+            "contact": "supply@globaltech.com"
+          }
+        },
+        "features": ["16GB RAM", "512GB SSD", "Intel i7"],
+        "ratings": [
+          {
+            "customer_id": "C001",
+            "rating": 5,
+            "review": "Fantastic performance!"
+          },
+          {
+            "customer_id": "C002",
+            "rating": 4,
+            "review": "Battery could be better."
+          }
+        ]
+      },
+      {
+        "product_id": "P002",
+        "name": "Wireless Earbuds",
+        "category": "Accessories",
+        "price": 99.99,
+        "inventory": {
+          "stock": 100,
+          "supplier": {
+            "name": "SoundHub Supplies",
+            "contact": "contact@soundhub.com"
+          }
+        },
+        "features": ["Noise Cancelling", "20-Hour Battery", "Bluetooth 5.0"],
+        "ratings": [
+          {
+            "customer_id": "C003",
+            "rating": 4,
+            "review": "Great sound quality."
+          }
+        ]
+      }
+    ],
+    "customers": [
+      {
+        "customer_id": "C001",
+        "name": "Alice Johnson",
+        "email": "alice@example.com",
+        "purchase_history": [
+          {
+            "order_id": "O001",
+            "products": ["P001"],
+            "date": "2024-08-15",
+            "total": 1499.99,
+            "payment_method": "Credit Card"
+          }
+        ],
+        "loyalty_points": 200
+      },
+      {
+        "customer_id": "C002",
+        "name": "Bob Smith",
+        "email": "bob@example.com",
+        "purchase_history": [
+          {
+            "order_id": "O002",
+            "products": ["P002"],
+            "date": "2024-08-20",
+            "total": 99.99,
+            "payment_method": "PayPal"
+          }
+        ],
+        "loyalty_points": 150
+      }
+    ],
+    "orders": [
+      {
+        "order_id": "O001",
+        "customer_id": "C001",
+        "products": [
+          {
+            "product_id": "P001",
+            "quantity": 1
+          }
+        ],
+        "date": "2024-08-15",
+        "status": "Completed",
+        "total": 1499.99
+      },
+      {
+        "order_id": "O002",
+        "customer_id": "C002",
+        "products": [
+          {
+            "product_id": "P002",
+            "quantity": 1
+          }
+        ],
+        "date": "2024-08-20",
+        "status": "Completed",
+        "total": 99.99
+      }
+    ]
+  }
+}
